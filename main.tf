@@ -19,10 +19,11 @@ provider "aws" {
 # The instance will be created with the default security group, key pair, IAM role
 # If you want to create the instance in a specific VPC, subnet, security group, key pair, IAM role, you need to define them in the resource block
 resource "aws_instance" "terraform_instance" {
-    ami = "ami-066784287e358dad1"
-    instance_type = "t2.micro"
+    # We can use var.variable_name to access the value of the variable from variables.tf
+    ami = var.instance_ami
+    instance_type = var.instance_type
     tags = {
-        Name = "modified-terraform-instance"
+        Name = var.instance_name
     }
   
 }
